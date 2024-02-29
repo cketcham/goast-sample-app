@@ -23,7 +23,7 @@ app.put('/users/:id', (req, res) => {
     }
 
     if (userIndex === -1) {
-        return res.status(404).json({ message: `User with id ${id} does not exist` });
+        throw new Error(`User with id ${id} does not exist`);
     }
     users[userIndex].name = req.body.name;
     users[userIndex].age = req.body.age;
