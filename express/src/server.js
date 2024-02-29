@@ -15,8 +15,16 @@ app.get('/users', (req, res) => {
 });
 
 app.put('/users/:id', (req, res) => {
-    const userIndex = users.findIndex(u => u.id === req.params.id);
+    const id = parseInt(req.params.id);
+    const userIndex = users.findIndex(u => u.id === id);
 
+    if (!req.body.name || !req.body.age) {
+        return res.status(400).json({ message: 'Missing name or age in request body' });
+    }
+
+    if (userIndex === -1) {
+        return res.status(404).json({ message: `User with id ${id} does not exist` });
+    }
     users[userIndex].name = req.body.name;
     users[userIndex].age = req.body.age;
 
