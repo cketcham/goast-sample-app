@@ -13,7 +13,7 @@ def index():
         "Why did the golfer bring two pairs of pants? In case he got a hole in one!"
     ]
     
-    joke_index = random.randint(0, len(jokes))
+    joke_index = random.randint(0, len(jokes) - 1)
     return render_template('index.html', joke=jokes[joke_index])
 
 if __name__ == '__main__':
